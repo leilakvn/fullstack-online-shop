@@ -4,15 +4,40 @@ import logo from "../assets/images/eco-logo.png";
 import userIcon from "../assets/images/user-icon.png";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
 const Header = () => {
   const nav_link = [
     { path: "home", display: "Home" },
     { path: "cart", display: "Cart" },
     { path: "shop", display: "Shop" },
   ];
+
+  const headerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current.className = "sticky__header";
+      } else {
+        headerRef.current.className = "";
+      }
+    });
+  };
+  const toggleMenu = () =>
+    menuRef.current.classList.toggle(
+      "activeMenu"
+    ); /*if activeMenu is set remove it, otherwise add it*/
+  useEffect(() => {
+    stickyHeaderFunc();
+    return () => window.removeEventListener("scroll", stickyHeaderFunc);
+  });
   return (
-    <header className="header">
-      <Container>
+    <header ref={headerRef}>
+      <Container className="header">
         <Row>
           <div className="wrap_navbar">
             <div className="logo">
@@ -22,7 +47,7 @@ const Header = () => {
                 {/* <p>since 1998</p> */}
               </div>
             </div>
-            <div className="navigation">
+            <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <ul className="menu">
                 {nav_link.map((item, index) => (
                   <li className="menu__item">
@@ -48,13 +73,17 @@ const Header = () => {
                 <span className="badge">1</span>
               </span>
               <span>
-                <motion.img whileTap={{scale:1.2}} src={userIcon} alt="user" />
+                <motion.img
+                  whileTap={{ scale: 1.2 }}
+                  src={userIcon}
+                  alt="user"
+                />
               </span>
-            </div>
-            <div className="mobile_menu">
-              <span>
-                <i className="ri-menu-line"></i>
-              </span>
+              <div className="mobile_menu" onClick={toggleMenu}>
+                <span>
+                  <i className="ri-menu-line"></i>
+                </span>
+              </div>
             </div>
           </div>
         </Row>
