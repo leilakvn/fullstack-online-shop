@@ -5,6 +5,7 @@ import userIcon from "../assets/images/user-icon.png";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 const Header = () => {
   const nav_link = [
     { path: "home", display: "Home" },
@@ -14,6 +15,8 @@ const Header = () => {
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+
+  const totalQuantity=useSelector(state=>state.cart.totalQuantity)
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -50,7 +53,7 @@ const Header = () => {
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <ul className="menu">
                 {nav_link.map((item, index) => (
-                  <li className="menu__item">
+                  <li className="menu__item" key={index}>
                     <NavLink
                       to={item.path}
                       className={(navClass) =>
@@ -70,7 +73,7 @@ const Header = () => {
               </span>
               <span className="cart__icon">
                 <i className="ri-shopping-bag-line"></i>
-                <span className="badge">1</span>
+                <span className="badge">{totalQuantity}</span>
               </span>
               <span>
                 <motion.img

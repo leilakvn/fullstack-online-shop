@@ -39,6 +39,7 @@ const Home = () => {
     setPopularProducts(filteredPopularProducts);
   }, []);
   const year = new Date().getFullYear();
+
   return (
     <Helmet title="Home">
       <section className="hero__section">
