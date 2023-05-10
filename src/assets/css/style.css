@@ -190,6 +190,31 @@ a {
     font-size: 1.2rem !important;
   }
 }
+.profile {
+  position: relative;
+  z-index: 9;
+}
+
+.profile_action {
+  position: absolute;
+  z-index: 10;
+  background: #fdefe6;
+  line-height: 3rem;
+  top: 99%;
+  width: 150px;
+  left: 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+  cursor: pointer;
+}
+
+.show_profile_action {
+  display: block;
+}
+
 .hero__section {
   background: #d6e5fb;
 }
@@ -577,6 +602,77 @@ a {
   font-size: 1.2rem;
   font-weight: 600;
   margin-top: 30px;
+}
+
+.table img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+td {
+  color: #0a1d37;
+}
+td i {
+  cursor: pointer;
+}
+
+.cart__content h2 {
+  text-align: center;
+}
+
+.formGroup input {
+  width: 100%;
+  border: 1px solid #d6e5fb;
+  padding: 4px;
+}
+
+.checkout__card {
+  background: #0a1d37;
+  color: #fff;
+  border-radius: 10px;
+  padding: 4px 10px;
+}
+.checkout__card h6, .checkout__card h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+.checkout__card h4 {
+  border-top: 1px solid rgba(221, 221, 221, 0.253);
+  padding-top: 10px;
+}
+.checkout__card button {
+  background: #fff;
+  color: #0a1d37;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.login__formgroup input {
+  width: 100%;
+}
+.login__formgroup input[type=file] {
+  color: #fff;
+}
+
+.login__form {
+  background: #0a1d37;
+  border-radius: 5px;
+  padding: 40px;
+  margin-bottom: 50px;
+}
+.login__form button {
+  background-color: #fff;
+  color: #0a1d37;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 10px !important;
+}
+.login__form p a {
+  padding-left: 5px;
+  color: rgba(255, 255, 255, 0.7803921569);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -59,7 +59,7 @@
   color: $primary-color;
   display: none;
 }
-.activeMenu{
+.activeMenu {
   display: block !important;
 }
 .navActive {
@@ -99,7 +99,6 @@
 @media only screen and (max-width: 768px) {
   .mobile_menu {
     display: block;
-    
   }
   .navigation {
     position: fixed;
@@ -137,4 +136,27 @@
       font-size: 1.2rem !important;
     }
   }
+}
+.profile {
+  position: relative;
+  z-index: 9;
+}
+.profile_action {
+  position: absolute;
+  z-index: 10;
+  background: $card-bg-01;
+  line-height: 3rem;
+  top:99%;
+  width: 150px;
+  left: 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+  cursor: pointer;
+  
+}
+.show_profile_action{
+  display: block;
 }

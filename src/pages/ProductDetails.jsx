@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Helmet } from "../components/Helmet";
 import CommonSection from "../components/CommonSection";
 import { useParams } from "react-router-dom";
@@ -28,6 +28,9 @@ const ProductDetails = () => {
     dispatch(cartActions.addItem({ id, image: imgUrl, productName, price }));
     toast.success("Product added successfully");
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [product]);
   const [activeTab, setActiveTab] = useState("desc");
   const [rating, setRating] = useState(null);
   const reviewUser = useRef();
@@ -38,6 +41,13 @@ const ProductDetails = () => {
     e.preventDefault();
     const reviewUserName = reviewUser.current.value;
     const reviewUserMessage = reviewMessage.current.value;
+    const reviewObj = {
+      userName: reviewUserName,
+      text: reviewUserMessage,
+      rating,
+    };
+    console.log(reviewObj);
+    toast.success("review submitted");
   };
   return (
     <Helmet title={productName}>
@@ -45,7 +55,7 @@ const ProductDetails = () => {
       <Container style={{ padding: "50px 0px" }}>
         <Row>
           <Col lg="6">
-            <img className="productImg" src={imgUrl} />
+            <img className="productImg" alt="" src={imgUrl} />
           </Col>
           <Col lg="6">
             <div className="product__details">
@@ -127,29 +137,46 @@ const ProductDetails = () => {
                           type="text"
                           ref={reviewUser}
                           placeholder="enter name"
+                          required
                         ></input>
                         <div className="review-rating d-flex  align-items-center">
-                          <span onClick={() => setRating(1)}>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(1)}
+                          >
                             1<i className="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(2)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(2)}
+                          >
                             2<i className="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(3)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(3)}
+                          >
                             3<i className="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(4)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(4)}
+                          >
                             4<i className="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(5)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(5)}
+                          >
                             5<i className="ri-star-s-fill"></i>
-                          </span>
+                          </motion.span>
                         </div>
                         <textarea
                           rows={4}
                           type="text"
                           ref={reviewMessage}
                           placeholder="Review Message..."
+                          required
                         ></textarea>
                         <button type="submit" className="buy_btn">
                           Submit
