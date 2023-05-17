@@ -1,8 +1,10 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "../firebasse.config";
 import { onAuthStateChanged } from "firebase/auth";
+
+
 export const useAuth = () => {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState( null)
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -12,6 +14,6 @@ export const useAuth = () => {
       }
     });
   });
-  console.log(currentUser)
-  return {currentUser};
+  console.log(currentUser);
+  return { currentUser };
 };

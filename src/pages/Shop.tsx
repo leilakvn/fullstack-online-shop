@@ -6,8 +6,9 @@ import products from "../assets/data/products";
 import ProductList from "../components/ProductList";
 const Shop = () => {
   const [productData, setProductData] = useState(products);
-  const handelFilter = (e) => {
-    const filterValue = e.target.value;
+
+  const handelFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const filterValue = e.target?.value;
     if (filterValue === "sofa") {
       const filteredProducts = products.filter(
         (item) => item.category === "sofa"
@@ -40,13 +41,28 @@ const Shop = () => {
     }
     console.log(productData);
   };
-  const handelSearch = (e) => {
+  const handelSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const sort = e.target.value;
+    if (sort === "ascending") {
+      var res = productData.sort((a, b) => a.price - b.price);
+      console.log("first", res);
+      setProductData(res);
+    }
+    if (sort === "descending") {
+      var res = productData.sort((a, b) => b.price - a.price);
+      console.log("second", res);
+      setProductData(res);
+    }
+  };
+
+  const handelSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     const searchedproducts = products.filter((item) =>
       item.productName.toLocaleLowerCase().includes(searchTerm)
-    ); 
-   setProductData(searchedproducts) 
+    );
+    setProductData(searchedproducts);
   };
+
   return (
     <Helmet title="shop">
       <CommonSection title="shop" />
@@ -66,9 +82,9 @@ const Shop = () => {
           </Col>
           <Col lg="3" sm="6" className="text-end" xs="12">
             <div className="filter__widget">
-              <select>
+              <select onChange={handelSort}>
                 <option>Sort By</option>
-                <option value="ascendenig">ascendenig</option>
+                <option value="ascending">ascendenig</option>
                 <option value="descending"> descending</option>
               </select>
             </div>
@@ -90,7 +106,7 @@ const Shop = () => {
           {productData.length === 0 ? (
             <h1 className="text-center fs-4">No products are found!</h1>
           ) : (
-            <ProductList data={productData} />
+            <ProductList products={productData} />
           )}
         </Row>
       </Container>

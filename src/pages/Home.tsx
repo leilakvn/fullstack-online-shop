@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "./../components/Helmet";
+import { Helmet } from "../components/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import heroImg from "../assets/images/hero-img.png";
 import { Link } from "react-router-dom";
@@ -10,12 +10,14 @@ import products from "../assets/data/products";
 import { useState, useEffect } from "react";
 import timerImage from "../assets/images/counter-timer-img.png";
 import Clock from "../components/Clock";
+import { Product } from "../model";
+
 const Home = () => {
-  const [trendingProducts, setTrendingProducts] = useState([]);
-  const [bestSaleProducts, setBestSaleProducts] = useState([]);
-  const [mobileProducts, setMobileProducts] = useState([]);
-  const [wireliessProducts, setWirelessProducts] = useState([]);
-  const [popularProducts, setPopularProducts] = useState([]);
+  const [trendingProducts, setTrendingProducts] = useState<Product[]>([]);
+  const [bestSaleProducts, setBestSaleProducts] = useState<Product[]>([]);
+  const [mobileProducts, setMobileProducts] = useState<Product[]>([]);
+  const [wireliessProducts, setWirelessProducts] = useState<Product[]>([]);
+  const [popularProducts, setPopularProducts] = useState<Product[]>([]);
   useEffect(() => {
     const filteredTrendingData = products.filter(
       (item) => item.category === "chair"
@@ -75,7 +77,7 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section_title">Trending Products</h2>
             </Col>
-            <ProductList data={trendingProducts} />
+            <ProductList products={trendingProducts} />
           </Row>
         </Container>
       </section>
@@ -85,7 +87,7 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section_title">Best Products</h2>
             </Col>
-            <ProductList data={bestSaleProducts} />
+            <ProductList products={bestSaleProducts} />
           </Row>
         </Container>
       </section>
@@ -117,8 +119,8 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section_title">New Arrival Products</h2>
             </Col>
-            <ProductList data={mobileProducts} />
-            <ProductList data={wireliessProducts} />
+            <ProductList products={mobileProducts} />
+            <ProductList products={wireliessProducts} />
           </Row>
         </Container>
       </section>
@@ -128,7 +130,7 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section_title">Popular Products</h2>
             </Col>
-            <ProductList data={popularProducts} />
+            <ProductList products={popularProducts} />
           </Row>
         </Container>
       </section>

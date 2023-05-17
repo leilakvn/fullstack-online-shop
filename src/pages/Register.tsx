@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Helmet } from "./../components/Helmet";
-import CommonSection from "./../components/CommonSection";
+import { Helmet } from "../components/Helmet";
+import CommonSection from "../components/CommonSection";
 import { Row, Col, Container, Form, FormGroup } from "reactstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
