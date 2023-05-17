@@ -5,8 +5,8 @@ import { Row, Col, Container, FormGroup, Form } from "reactstrap";
 import { useSelector } from "react-redux";
 import Cart from "./Cart";
 const CheckOut = () => {
-  const totalCost = useSelector((state:any) => state.cart.totalAmount);
-  const totalQty = useSelector((state:any) => state.cart.totalQuantity);
+  const totalCost = useSelector((state) => state.cart.totalAmount);
+  const totalQty = useSelector((state) => state.cart.totalQuantity);
   return (
     <Helmet>
       <CommonSection title="Checkout" />

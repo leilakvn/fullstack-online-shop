@@ -19,13 +19,13 @@ const Header = () => {
     { path: "shop", display: "Shop" },
   ];
 
-  const headerRef = useRef<HTMLElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const profileActionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef(null);
+  const menuRef = useRef(null);
+  const profileActionRef = useRef(null);
   const { currentUser } = useAuth();
 
   const toggleProfileAction = () =>
-    profileActionRef.current?.classList.toggle("show_profile_action");
+    profileActionRef.current.classList.toggle("show_profile_action");
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -35,7 +35,7 @@ const Header = () => {
       .catch((err) => toast.error(err.message));
   };
 
-  const totalQuantity = useSelector((state:any) => state.cart.totalQuantity);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -43,14 +43,14 @@ const Header = () => {
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        headerRef.current!.className = "sticky__header";
+        headerRef.current.className = "sticky__header";
       } else {
-        headerRef.current!.className = "";
+        headerRef.current.className = "";
       }
     });
   };
   const toggleMenu = () =>
-    menuRef.current?.classList.toggle(
+    menuRef.current.classList.toggle(
       "activeMenu"
     ); /*if activeMenu is set remove it, otherwise add it*/
   useEffect(() => {
@@ -97,7 +97,7 @@ const Header = () => {
               <div className="profile">
                 <motion.img
                   whileTap={{ scale: 1.2 }}
-                  src={currentUser ? currentUser['photoURL'] : userIcon}
+                  src={currentUser ? currentUser.photoURL : userIcon}
                   alt="user"
                   onClick={toggleProfileAction}
                 />

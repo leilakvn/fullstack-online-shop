@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Helmet } from "../components/Helmet";
+import { Helmet } from "./../components/Helmet";
 import { Row, Col, Container, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const signIn = async (e: React.FormEvent<HTMLFormElement>) => {
+  const signIn = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -24,7 +24,7 @@ const Login = () => {
       setLoading(false);
       toast.success("Successfully logged in");
       navigate("/checkout");
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
       toast.error(error.message);
     }
